@@ -1,0 +1,114 @@
+
+:root { 
+    --base-color: #2C3E50; 
+    --accent-color: #E74C3C; 
+    --light-grey: #ECF0F1; 
+    --dark-grey: #34495E;  
+}
+
+
+/* Base Styling */
+body {
+    background-color: var(--base-color);
+    color: var(--light-grey);
+}
+
+.grey {
+    color: var(--light-grey);
+}
+
+.darkGreyWord {
+    color: var(--dark-grey);
+}
+/* Header */
+.base-bg {
+    background-color: var(--base-color);
+}
+
+/* Buttons & Links */
+.accentColor {
+    background-color: var(--accent-color);  
+    color: white; 
+    border: none;  
+}
+
+.baseColor {
+    background-color: var(--base-color);  
+}
+.baseColorWord {
+    color: var(--dark-grey);  
+}
+
+/* Optional: Style the button when hovered */
+.accentColor:hover {
+    background-color: darken(var(--accent-color), 10%);  
+}
+/* Containers */
+#itemsContainer {
+    background-color: var(--light-grey);
+    padding: 20px;
+    border-radius: 8px;
+}
+
+/* List Items */
+.sales-item { 
+    padding: 10px;
+    margin: 5px 0;
+    background-color: var(--light-grey);
+    border: 1px solid var(--dark-grey);
+    border-radius: 4px;
+    cursor: move;
+}
+
+/* Error Messages */
+.error-message {
+    color: var(--accent-color);
+    font-size: 0.875rem;
+    margin-top: 0.25rem;
+    display: none;
+}
+
+/* Input Error */
+.input-error {
+    border-color: var(--accent-color);
+}
+
+/* Utility Classes */
+.blue {
+    background-color: var(--base-color);
+    padding: 20px;
+    color: white;
+}
+
+.grayback {
+    background-color: var(--light-grey);
+}
+
+.border {
+    border: 4px solid var(--dark-grey);
+}
+
+.bold {
+    font-weight: bold;
+}
+
+/* Highlight matched text */
+.highlight {
+    background-color: yellow;
+    font-weight: bold;
+}
+
+.description-text {
+    font-size: 1.25rem;
+    line-height: 1.6;  
+}
+
+.base-bg {
+    padding: 20px;     
+}
+
+
+.highlight-query {
+    color: var(--accent-color); 
+    font-weight: bold;
+}
