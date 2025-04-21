@@ -29,6 +29,15 @@ def hello_world():
 def about():
     return render_template('about.html')
 
+@app.route('/recipes')
+def recipes():
+    return render_template('recipes.html')
+
+@app.route('/quiz')
+def quiz():
+    return render_template('quiz.html')
+
+
 if __name__ == '__main__':
    app.run(debug = True, port=5001)
 
