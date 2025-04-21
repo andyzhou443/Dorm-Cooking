@@ -1,7 +1,185 @@
 {% extends "layout.html" %}
 
 {% block content %}
-<div class="container mt-4">
-    <h1>Quiz Page</h1>
-</div>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cooking Quiz</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f9f9f9;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="quiz-container">
+        <div class="home-icon">⌂</div>
+        
+        <div id="quiz-content">
+            <div class="quiz-header">
+                <h2 id="question-number">Question 1 of 2</h2>
+                <div class="score-display">Score: <span id="score">0</span></div>
+            </div>
+            
+            <div id="feedback-container" class="feedback" style="display: none;">
+                <p class="feedback-text" id="feedback-text">Not quite! The eggs should already be in and mixed by the time you're adding milk or water.</p>
+            </div>
+            
+            <div class="question-container">
+                <p class="question" id="question-text">After adding milk or water to the mix, what's the next step?</p>
+            </div>
+            
+            <div class="options-container" id="options-container">
+            </div>
+            
+            <button id="next-btn" class="next-btn" disabled>Next</button>
+        </div>
+        
+        <div id="completion-screen" style="display: none;">
+            <h1 class="completed-message">Quiz Completed!</h1>
+            <p class="completed-message">Your final score: <span id="final-score">0</span>/2</p>
+            <button id="restart-btn" class="restart-btn">Take Quiz Again</button>
+        </div>
+    </div>
+    
+    <script>
+        // Quiz data
+        const quizData = [
+            {
+                question: "After adding milk or water to the mix, what's the next step?",
+                options: [
+                    "Preheat the pan",
+                    "Add salt",
+                    "Put in the eggs",
+                    "Whisk again"
+                ],
+                correctIndex: 3,
+                feedback: "Not quite! The eggs should already be in and mixed by the time you're adding milk or water."
+            },
+            {
+                question: "For a nice creamy scramble, you should…",
+                options: [
+                    "Stop when the eggs are mostly set, but a little liquid egg remains",
+                    "Whisk harder",
+                    "Add pepper",
+                    "Cook the eggs for longer than recommended"
+                ],
+                correctIndex: 0,
+                feedback: "That's not right! For creamy scrambled eggs, you should stop cooking while there's still a little moisture."
+            }
+        ];
+        
+        let currentQuestionIndex = 0;
+        let score = 0;
+        let selectedOptionIndex = null;
+        
+        const questionNumberElement = document.getElementById('question-number');
+        const questionTextElement = document.getElementById('question-text');
+        const optionsContainer = document.getElementById('options-container');
+        const nextButton = document.getElementById('next-btn');
+        const scoreElement = document.getElementById('score');
+        const feedbackContainer = document.getElementById('feedback-container');
+        const feedbackTextElement = document.getElementById('feedback-text');
+        const quizContent = document.getElementById('quiz-content');
+        const completionScreen = document.getElementById('completion-screen');
+        const finalScoreElement = document.getElementById('final-score');
+        const restartButton = document.getElementById('restart-btn');
+        
+        // Initialize quiz
+        function initializeQuiz() {
+            currentQuestionIndex = 0;
+            score = 0;
+            scoreElement.textContent = score;
+            loadQuestion();
+            quizContent.style.display = 'block';
+            completionScreen.style.display = 'none';
+        }
+        
+        function loadQuestion() {
+            const currentQuestion = quizData[currentQuestionIndex];
+            
+            //Reset state
+            selectedOptionIndex = null;
+            nextButton.disabled = true;
+            feedbackContainer.style.display = 'none';
+            
+            //Update question number
+            questionNumberElement.textContent = `Question ${currentQuestionIndex + 1} of ${quizData.length}`;
+            
+            //Update question text
+            questionTextElement.textContent = currentQuestion.question;
+            
+            //Clear previous options
+            optionsContainer.innerHTML = '';
+            
+            //Add options
+            currentQuestion.options.forEach((option, index) => {
+                const optionElement = document.createElement('div');
+                optionElement.className = 'option';
+                optionElement.innerHTML = option;
+                optionElement.addEventListener('click', () => selectOption(index));
+                optionsContainer.appendChild(optionElement);
+            });
+        }
+        
+        function selectOption(index) {
+            if (selectedOptionIndex !== null) {
+                return; 
+            }
+            
+            selectedOptionIndex = index;
+            const currentQuestion = quizData[currentQuestionIndex];
+            const options = document.querySelectorAll('.option');
+            
+            // Marking selected option
+            options[index].classList.add('selected');
+            
+            if (index === currentQuestion.correctIndex) {
+                //Correct answer
+                options[index].classList.add('correct');
+                options[index].innerHTML = `${currentQuestion.options[index]} <span class="result-icon">✓</span> <span class="correct-text">Correct Answer</span>`;
+                score++;
+                scoreElement.textContent = score;
+            } else {
+                //Incorrect answer
+                options[index].classList.add('incorrect');
+                options[index].innerHTML = `${currentQuestion.options[index]} <span class="result-icon">✗</span>`;
+                
+                //Show correct answer
+                options[currentQuestion.correctIndex].classList.add('correct');
+                options[currentQuestion.correctIndex].innerHTML = `${currentQuestion.options[currentQuestion.correctIndex]} <span class="result-icon">✓</span> <span class="correct-text">Correct Answer</span>`;
+                
+                //Show feedback
+                feedbackContainer.style.display = 'block';
+                feedbackTextElement.textContent = currentQuestion.feedback;
+            }
+            
+            nextButton.disabled = false;
+        }
+        
+        function nextQuestion() {
+            currentQuestionIndex++;
+            
+            if (currentQuestionIndex < quizData.length) {
+                loadQuestion();
+            } else {
+                quizContent.style.display = 'none';
+                completionScreen.style.display = 'block';
+                finalScoreElement.textContent = score;
+            }
+        }
+        
+        nextButton.addEventListener('click', nextQuestion);
+        restartButton.addEventListener('click', initializeQuiz);
+        initializeQuiz();
+    </script>
+</body>
+</html>
 {% endblock %}

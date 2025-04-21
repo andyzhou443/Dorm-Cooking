@@ -16,6 +16,25 @@ Recipe = {
 
 }
 
+quiz_data = [
+    {
+        "id": 1,
+        "question": "After adding milk or water to the mix, what's the next step?",
+        "options": ["Preheat the pan", "Add salt", "Put in the eggs", "Whisk again"],
+        "correct": 3,  # Index of correct answer (0-based)
+        "explanation": "The eggs should already be in and mixed by the time you're adding milk or water."
+    },
+    {
+        "id": 2,
+        "question": "For a nice creamy scramble, you should...",
+        "options": ["Stop when the eggs are mostly set, but a little liquid egg remains", 
+                   "Whisk harder", 
+                   "Add pepper", 
+                   "Cook the eggs for longer than recommended"],
+        "correct": 0,
+        "explanation": "Stopping when eggs are mostly set but still slightly liquid ensures a creamy texture."
+    }
+]
 
 current_id = 4
 
