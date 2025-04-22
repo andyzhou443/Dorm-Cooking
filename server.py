@@ -41,8 +41,8 @@ current_id = 4
 # ROUTES
 
 @app.route('/')
-def hello_world():
-   return render_template('hello_world.html')   
+def home():
+   return render_template('index.html')   
 
 @app.route('/about')
 def about():
