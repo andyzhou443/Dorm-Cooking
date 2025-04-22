@@ -16,6 +16,11 @@ body {
     padding: 0;
 }
 
+/* Add space between navbar and content */
+main {
+    margin-top: 20px; /* Adjust the value as needed */
+}
+
 
 .grey {
     color: var(--light-grey);
@@ -266,6 +271,7 @@ body {
 
 .recipe-card {
     width: 280px;
+    height: 315px;
     border-radius: 24px;
     overflow: hidden;
     background-color: white;
@@ -365,4 +371,11 @@ body {
     color: #C0392B;
     cursor: pointer;
   }
+
+  /* Remove outline on active/focused buttons */
+.navbar .navbar-nav .btn:focus, 
+.navbar .navbar-nav .btn:active {
+    outline: none;
+    box-shadow: none;
+}
   

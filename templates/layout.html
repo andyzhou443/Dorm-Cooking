@@ -12,30 +12,32 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css">
 
     <link rel="stylesheet" href="{{url_for('static', filename='main.css')}}">
+    <script>
+        window.recipes = {% if recipes is defined %}{{ recipes|tojson }}{% else %}{}{% endif %};
+      </script>
     <script src="{{ url_for('static', filename='main.js') }}"></script>
 
     <title>Dorm Cooking</title>
 </head>
 <body>
 
-<header>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <div class="container-fluid">
-            <a class="navbar-brand bold darkGreyWord" href="/" aria-label="Dorm Cooking">Dorm Cooking</a>
-            <button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-
-            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-                <div class="navbar-nav" aria-label="Main Navigation">
-                    <a class="btn ms-3 accentColor" href="/about" aria-label="About">About</a>
-                    <a class="btn ms-3 accentColor" href="/recipes" aria-label="Recipes">Recipes</a>
-                    <a class="btn ms-3 accentColor" href="/quiz" aria-label="Quiz">Quiz</a>
+    <header>
+        <nav class="navbar navbar-expand-lg" style="background-color: #6FA36F;">
+            <div class="container-fluid">
+                <a class="navbar-brand bold" href="/" style="color: white;" aria-label="Dorm Cooking">Dorm Cooking</a>
+                <button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+    
+                <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                    <div class="navbar-nav" aria-label="Main Navigation">
+                        <a class="btn ms-3" href="/about" style="background-color: #6FA36F; color: white; border: none;" aria-label="About">About</a>
+                        <a class="btn ms-3" href="/all_recipes" style="background-color: #6FA36F; color: white; border: none;" aria-label="Recipes">Recipes</a>
+                    </div>
                 </div>
             </div>
-        </div>
-    </nav>
-</header>
+        </nav>
+    </header>
 
 
 

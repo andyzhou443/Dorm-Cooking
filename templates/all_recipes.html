@@ -1,0 +1,34 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<h1 class="text-center recommended-heading">All Recipes</h1>
+
+<div class="d-flex justify-content-center gap-4 flex-wrap">
+    {% for recipe_id, recipe in recipes.items() %}
+    <div class="recipe-card" data-recipe-id="{{ recipe_id }}">
+        <img src="{{ url_for('static', filename='img/' + recipe.image) }}" class="recipe-img" alt="{{ recipe.name }}">
+        <div class="recipe-details">
+            <div class="recipe-title">{{ recipe.name }}</div>
+            <div class="recipe-time">{{ recipe.time }}</div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
+<div id="recipeModal" class="modal">
+    <div class="modal-content">
+        <span class="close-btn">&times;</span>
+        <h2 id="modal-title">Recipe Title</h2>
+        <p><strong>Difficulty:</strong> <span id="modal-difficulty"></span></p>
+        <p><strong>Time:</strong> <span id="modal-time"></span></p>
+        <p><strong>Cost:</strong> <span id="modal-cost"></span></p>
+        <p><strong>Genre:</strong> <span id="modal-genre"></span></p>
+        <button id="begin-button">Begin</button>
+    </div>
+</div>
+
+<script>
+    // make the Python dict available as a JS object
+    var recipes = {{ recipes | tojson }};
+  </script>
+{% endblock %}

@@ -5,7 +5,7 @@
     <h1 class="recommended-heading">Recommended</h1>
     <div class="d-flex justify-content-center gap-4 flex-wrap">
         <!-- Recipe Card 1 -->
-        <div class="recipe-card">
+        <div class="recipe-card" data-recipe-id="1">
             <img src="{{ url_for('static', filename='img/scrambled_eggs.jpg') }}" class="recipe-img" alt="Scrambled Eggs">
             <div class="recipe-details">
                 <div class="recipe-title">Scrambled Eggs</div>
@@ -14,7 +14,7 @@
         </div>
 
         <!-- Recipe Card 2 -->
-        <div class="recipe-card">
+        <div class="recipe-card" data-recipe-id="2">
             <img src="{{ url_for('static', filename='img/chickpea_salad.jpg') }}" class="recipe-img" alt="Chickpea Salad">
             <div class="recipe-details">
                 <div class="recipe-title">Mediterranean Chickpea Salad</div>
@@ -23,7 +23,7 @@
         </div>
 
         <!-- Recipe Card 3 -->
-        <div class="recipe-card">
+        <div class="recipe-card" data-recipe-id="3">
             <img src="{{ url_for('static', filename='img/sausage_egg_cheese.jpg') }}" class="recipe-img" alt="Sausage Egg n' Cheese">
             <div class="recipe-details">
                 <div class="recipe-title">Sausage Egg n’ Cheese</div>
@@ -42,6 +42,7 @@
           <p><strong>Genre:</strong> <span id="modal-genre"></span></p>
           <button id="begin-button">Begin</button>
         </div>
-      </div>
+    </div>
 </div>
+
 {% endblock %}

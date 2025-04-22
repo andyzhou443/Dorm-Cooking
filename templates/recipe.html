@@ -1,0 +1,161 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<h1 class="text-center">{{ recipe.name }}</h1>
+
+<!-- INGREDIENTS DROPDOWN -->
+<div class="dropdown green">
+    <button class="dropdown-btn">Ingredients <span>▼</span></button>
+    <div class="dropdown-content">
+        <ul>
+            {% for item in recipe.ingredients %}
+                <li>{{ item }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+</div>
+
+<!-- RECIPE DROPDOWN -->
+<div class="dropdown yellow">
+    <button class="dropdown-btn">Recipe <span>▼</span></button>
+    <div class="dropdown-content">
+        <ol>
+            {% for step in recipe.steps %}
+                <li>{{ step }}</li>
+            {% endfor %}
+        </ol>
+    </div>
+</div>
+
+<!-- QUIZ DROPDOWN -->
+<div class="dropdown pink">
+    <button class="dropdown-btn">Quiz <span>▼</span></button>
+    <div class="dropdown-content">
+        <div class="quiz-container">
+            <div id="quiz-content">
+                <div class="quiz-header">
+                    <h2 id="question-number">Question 1 of 2</h2>
+                    <div class="score-display">Score: <span id="score">0</span></div>
+                </div>
+
+                <div id="feedback-container" class="feedback" style="display: none;">
+                    <p class="feedback-text" id="feedback-text"></p>
+                </div>
+
+                <div class="question-container">
+                    <p class="question" id="question-text"></p>
+                </div>
+
+                <div class="options-container" id="options-container"></div>
+
+                <button id="next-btn" class="next-btn" disabled>Next</button>
+            </div>
+
+            <div id="completion-screen" style="display: none;">
+                <h1 class="completed-message">Quiz Completed!</h1>
+                <p class="completed-message">Your final score: <span id="final-score">0</span>/{{ recipe.quiz|length }}</p>
+                <button id="restart-btn" class="restart-btn">Take Quiz Again</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- PASS QUIZ DATA FROM FLASK -->
+<script>
+    const quizData = {{ recipe.quiz | tojson }};
+</script>
+
+<!-- QUIZ LOGIC -->
+<script>
+    let currentQuestionIndex = 0;
+    let score = 0;
+
+    const questionNumberElement = document.getElementById('question-number');
+    const questionTextElement   = document.getElementById('question-text');
+    const optionsContainer      = document.getElementById('options-container');
+    const nextButton            = document.getElementById('next-btn');
+    const scoreElement          = document.getElementById('score');
+    const feedbackContainer     = document.getElementById('feedback-container');
+    const feedbackTextElement   = document.getElementById('feedback-text');
+    const quizContent           = document.getElementById('quiz-content');
+    const completionScreen      = document.getElementById('completion-screen');
+    const finalScoreElement     = document.getElementById('final-score');
+    const restartButton         = document.getElementById('restart-btn');
+
+    function initializeQuiz() {
+        currentQuestionIndex = 0;
+        score = 0;
+        scoreElement.textContent = score;
+        quizContent.style.display      = 'block';
+        completionScreen.style.display = 'none';
+        loadQuestion();
+    }
+
+    function loadQuestion() {
+        const currentQuestion = quizData[currentQuestionIndex];
+        questionNumberElement.textContent = 
+            `Question ${currentQuestionIndex + 1} of ${quizData.length}`;
+        questionTextElement.textContent = currentQuestion.question;
+        feedbackContainer.style.display = 'none';
+        nextButton.disabled = true;
+
+        optionsContainer.innerHTML = '';
+
+        currentQuestion.options.forEach((option, index) => {
+            const btn = document.createElement('div');
+            btn.classList.add('option');
+            btn.textContent = option;
+
+            btn.addEventListener('click', () => {
+                // clear previous highlights
+                document.querySelectorAll('.option')
+                        .forEach(opt => opt.classList.remove('selected','correct','incorrect'));
+
+                btn.classList.add('selected');
+
+                if (index === currentQuestion.correct) {
+                    btn.classList.add('correct');
+                    score++;
+                    scoreElement.textContent = score;
+                    feedbackTextElement.textContent = "Correct!";
+                } else {
+                    btn.classList.add('incorrect');
+                    // highlight the right answer
+                    document.querySelectorAll('.option')[currentQuestion.correct]
+                            .classList.add('correct');
+                    feedbackTextElement.textContent = currentQuestion.explanation;
+                }
+
+                feedbackContainer.style.display = 'block';
+                nextButton.disabled = false;
+            });
+
+            optionsContainer.appendChild(btn);
+        });
+    }
+
+    nextButton.addEventListener('click', () => {
+        currentQuestionIndex++;
+        if (currentQuestionIndex < quizData.length) {
+            loadQuestion();
+        } else {
+            quizContent.style.display      = 'none';
+            completionScreen.style.display = 'block';
+            finalScoreElement.textContent  = score;
+        }
+    });
+
+    restartButton.addEventListener('click', initializeQuiz);
+    window.onload = initializeQuiz;
+</script>
+
+<!-- DROPDOWN TOGGLE LOGIC -->
+<script>
+    document.querySelectorAll(".dropdown-btn").forEach(button => {
+        button.addEventListener("click", () => {
+            const content = button.nextElementSibling;
+            content.style.display = content.style.display === "block" ? "none" : "block";
+        });
+    });
+</script>
+{% endblock %}
