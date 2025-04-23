@@ -3,6 +3,18 @@
 {% block content %}
 <h1 class="text-center">{{ recipe.name }}</h1>
 
+<!-- EQUIPMENT DROPDOWN -->
+<div class="dropdown gray">
+    <button class="dropdown-btn">Equipment<span>▼</span></button>
+    <div class="dropdown-content">
+        <div class="equipment-list">
+            {% for equipment in recipe.equipment %}
+            <div class="equipment-item">{{ equipment }}</div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
 <!-- INGREDIENTS DROPDOWN -->
 <div class="dropdown green">
     <button class="dropdown-btn">Ingredients <span>▼</span></button>
