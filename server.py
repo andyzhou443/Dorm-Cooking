@@ -3,227 +3,17 @@ from flask import render_template
 from flask import Response, request, jsonify
 from flask import redirect, url_for
 app = Flask(__name__)
+import json, os
 
-recipes = {
-    1: {
-        "name": "Scrambled Eggs",
-        "image": "scrambled_eggs.jpg",
-        "time": "5 Minutes",
-        "cost": "$",
-        "genre": "Breakfast",
-        "difficulty": "Easy",
-        "ingredients": ["2 eggs", "1 tbsp butter", "Salt", "Pepper"],
-        "steps": [
-            "Crack eggs into a bowl.",
-            "Whisk until yolks and whites are blended.",
-            "Heat butter in pan over medium heat.",
-            "Pour in eggs and stir until cooked through."
-        ],
-        "quiz": [
-            {
-                "id": 1,
-                "question": "After adding milk or water to the mix, what's the next step?",
-                "options": ["Preheat the pan", "Add salt", "Put in the eggs", "Whisk again"],
-                "correct": 3,  # Index of correct answer (0-based)
-                "explanation": "The eggs should already be in and mixed by the time you're adding milk or water."
-            },
-            {
-                "id": 2,
-                "question": "For a nice creamy scramble, you should...",
-                "options": ["Stop when the eggs are mostly set, but a little liquid egg remains", 
-                        "Whisk harder", 
-                        "Add pepper", 
-                        "Cook the eggs for longer than recommended"],
-                "correct": 0,
-                "explanation": "Stopping when eggs are mostly set but still slightly liquid ensures a creamy texture."
-            }
-        ]
-    },
-    2: {
-        "name": "Mediterranean Chickpea Salad",
-        "image": "chickpea_salad.jpg",
-        "time": "20 Minutes",
-        "cost": "$$",
-        "genre": "Lunch/Dinner",
-        "difficulty": "Easy",
-        "ingredients": ["1 can chickpeas (15 oz), drained and rinsed", "1 cucumber, diced", "1 small red onion, finely chopped", "½ cup crumbled feta cheese", "2–3 tablespoons olive oil", "2 tablespoons lemon juice (freshly squeezed)"],
-        "steps": [
-            "Drain and rinse 1 can (15 oz) of chickpeas.",
-            "Dice 1 cucumber and finely chop 1 small red onion.",
-            "Optional: Soak chopped onion in cold water for 10 minutes to reduce sharpness, then drain.",
-            "In a large bowl, combine the chickpeas, cucumber, and red onion.",
-            "Add 1/2 cup crumbled feta cheese to the bowl.",
-            "Drizzle with 2–3 tablespoons olive oil and 2 tablespoons fresh lemon juice.",
-            "Optional: Season with salt, pepper, and a dash of dried oregano.",
-            "Toss everything gently until well mixed.",
-            "Refrigerate for 15–30 minutes for best flavor before serving."
-        ],
-        "quiz": [
-            {
-                "id": 1,
-                "question": "What is the main protein source in this salad?",
-                "options": ["Chickpeas", "Feta cheese", "Olive oil", "Lemon juice"],
-                "correct": 0,
-                "explanation": "Chickpeas provide the main source of protein."
-            }
-        ]
-    },
-    3: {
-        "name": "Sausage Egg n' Cheese",
-        "image": "sausage_egg_cheese.jpg",
-        "time": "15 Minutes",
-        "cost": "$",
-        "genre": "Breakfast/Lunch",
-        "difficulty": "Easy",
-        "ingredients": ["1 sausage patty", "1 egg", "1 slice cheese", "1 sandwich bun", "Butter"],
-        "steps": [
-            "Cook sausage patty in a pan over medium heat.",
-            "Crack egg into the same pan and cook until desired doneness.",
-            "Toast the sandwich bun with a little butter.",
-            "Assemble the sandwich by placing the sausage, egg, and cheese on the bun."
-        ],
-        "quiz": [
-            {
-                "id": 1,
-                "question": "What is the best way to cook the sausage patty?",
-                "options": ["Grill it", "Pan-fry it", "Microwave it", "Bake it"],
-                "correct": 1,
-                "explanation": "Pan-frying the sausage patty gives it a crispy texture and enhances the flavor."
-            },
-            {
-                "id": 2,
-                "question": "What type of cheese is commonly used for a Sausage Egg n' Cheese sandwich?",
-                "options": ["Cheddar", "Swiss", "American", "Mozzarella"],
-                "correct": 2,
-                "explanation": "American cheese is typically used for its meltability and mild flavor."
-            }
-        ]
-    },
-    4: {
-        "name": "Avocado Toast",
-        "image": "avocado_toast.jpg",
-        "time": "10 Minutes",
-        "cost": "$",
-        "genre": "Breakfast",
-        "difficulty": "Easy",
-        "ingredients": [
-            "2 slices of whole grain or sourdough bread",
-            "1 ripe avocado",
-            "1 tablespoon lemon juice",
-            "1/8 teaspoon salt",
-            "1/8 teaspoon black pepper",
-            "1 teaspoon olive oil"
-        ],
-        "steps": [
-            "Toast 2 slices of bread to your desired crispness.",
-            "Cut the avocado in half, remove the pit, and scoop the flesh into a bowl.",
-            "Mash the avocado with 1 tablespoon lemon juice, 1/8 teaspoon salt, and 1/8 teaspoon black pepper until creamy.",
-            "Spread the mashed avocado evenly on each slice of toasted bread.",
-            "Drizzle with 1 teaspoon olive oil.",
-            "Optional: top with red pepper flakes, sliced cherry tomatoes, or a poached egg. Serve immediately."
-        ],
-        "quiz": [
-            {
-                "id": 1,
-                "question": "What is the main ingredient of avocado toast?",
-                "options": ["Tomato", "Avocado", "Cucumber", "Lettuce"],
-                "correct": 1,
-                "explanation": "The main ingredient in avocado toast is mashed avocado."
-            },
-            {
-                "id": 2,
-                "question": "Which of the following is a typical topping for avocado toast?",
-                "options": ["Cheese", "Tomatoes", "Peanut butter", "Butter"],
-                "correct": 1,
-                "explanation": "Tomatoes are commonly used as a topping for avocado toast."
-            }
-        ]
-    },
-    5: {
-        "name": "Chicken Stir Fry",
-        "image": "chicken_stir_fry.jpg",
-        "time": "25 Minutes",
-        "cost": "$$",
-        "genre": "Lunch/Dinner",
-        "difficulty": "Medium",
-        "ingredients": [
-            "1 boneless, skinless chicken breast (about 6–8 oz)",
-            "1 bell pepper (any color), sliced",
-            "1 small onion, sliced",
-            "2 tablespoons soy sauce",
-            "2 cloves garlic, minced",
-            "1 teaspoon fresh grated ginger (or 1/2 tsp ground)",
-            "2 tablespoons olive oil (or vegetable oil)",
-            "Optional: 1/2 cup broccoli florets or snap peas"
-        ],
-        "steps": [
-            "Slice the chicken breast into thin strips.",
-            "Chop the bell pepper and onion into bite-sized pieces.",
-            "Heat 1 tablespoon of oil in a large skillet or wok over medium-high heat.",
-            "Add the chicken and stir-fry until lightly browned and cooked through, about 5–7 minutes.",
-            "Remove chicken and set aside. Add the remaining tablespoon of oil to the pan.",
-            "Add the garlic, ginger, onion, and bell pepper (and optional veggies), and stir-fry for 3–5 minutes until tender-crisp.",
-            "Return the chicken to the pan, pour in 2 tablespoons soy sauce, and toss everything together for 1 more minute.",
-            "Serve hot with rice or noodles if desired."
-        ],
-        "quiz": [
-            {
-                "id": 1,
-                "question": "What is the key seasoning in a stir-fry?",
-                "options": ["Soy sauce", "Salt", "Pepper", "Lemon juice"],
-                "correct": 0,
-                "explanation": "Soy sauce is typically used as the key seasoning in stir-fry dishes."
-            },
-            {
-                "id": 2,
-                "question": "What is an important ingredient for adding flavor to stir-fry?",
-                "options": ["Garlic", "Tomatoes", "Cinnamon", "Chocolate"],
-                "correct": 0,
-                "explanation": "Garlic is an important flavoring agent in stir-fry recipes."
-            }
-        ]
-    },
-    6: {
-        "name": "Quesadillas",
-        "image": "quesadillas.jpg",
-        "time": "15 Minutes",
-        "cost": "$$",
-        "genre": "Lunch/Dinner",
-        "difficulty": "Medium",
-        "ingredients": [
-            "2 flour tortillas (8-inch)",
-            "1 cup shredded cheese (cheddar, Monterey Jack, or Mexican blend)",
-            "1/2 cup cooked and shredded chicken or beef (optional)",
-            "1 tablespoon butter or oil",
-            "Sour cream, for serving",
-            "Salsa, for serving"
-        ],
-        "steps": [
-            "Heat a nonstick skillet over medium heat and add 1/2 tablespoon butter or oil.",
-            "Place one tortilla in the skillet. Sprinkle half of the cheese evenly over half the tortilla.",
-            "Add optional cooked chicken or beef on top of the cheese.",
-            "Fold the tortilla in half over the filling. Cook for 2–3 minutes per side until golden brown and cheese is melted.",
-            "Repeat with the second tortilla using the remaining ingredients.",
-            "Slice into wedges and serve with sour cream and salsa on the side."
-        ],
-        "quiz": [
-            {
-                "id": 1,
-                "question": "What is the main filling in a quesadilla?",
-                "options": ["Cheese", "Meat", "Vegetables", "Rice"],
-                "correct": 0,
-                "explanation": "The main filling in a quesadilla is typically cheese."
-            },
-            {
-                "id": 2,
-                "question": "What is commonly served alongside quesadillas?",
-                "options": ["Sour cream and salsa", "Chips", "Rice", "Salad"],
-                "correct": 0,
-                "explanation": "Quesadillas are often served with sour cream and salsa on the side."
-            }
-        ]
-    }
-}
+recipe_file = 'recipes.json'
+
+def load_recipes():
+    if os.path.exists(recipe_file):
+        with open(recipe_file, 'r') as f:
+            return json.load(f)
+    return {}
+
+recipes = load_recipes()
 
 
 current_id = 4
@@ -242,13 +32,22 @@ def about():
 def all_recipes():
     return render_template('all_recipes.html', recipes=recipes)
 
-@app.route("/recipes/<int:recipe_id>")
+@app.route("/recipes/<recipe_id>")
 def show_recipe(recipe_id):
     print(f"recipes: {recipes}")  # Debugging line
     recipe = recipes.get(recipe_id)
     if not recipe:
         return f"Recipe with ID {recipe_id} not found", 404
     return render_template("recipe.html", recipe=recipe)
+
+@app.route("/ingredients")
+def ingredients():
+    return render_template('ingredients.html')
+
+@app.route("/equipment")
+def equipment():
+    return render_template('equipment.html')
+
 
 
 if __name__ == '__main__':
