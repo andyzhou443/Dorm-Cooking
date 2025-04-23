@@ -46,7 +46,7 @@ recipes = {
         "cost": "$$",
         "genre": "Lunch/Dinner",
         "difficulty": "Easy",
-        "ingredients": ["1 can chickpeas", "1 cucumber", "1 red onion", "Feta cheese", "Olive oil", "Lemon juice"],
+        "ingredients": ["1 can chickpeas (15 oz), drained and rinsed", "1 cucumber, diced", "1 small red onion, finely chopped", "½ cup crumbled feta cheese", "2–3 tablespoons olive oil", "2 tablespoons lemon juice (freshly squeezed)"],
         "steps": [
             "Rinse chickpeas and drain.",
             "Chop cucumber, onion, and feta.",

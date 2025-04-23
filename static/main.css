@@ -378,4 +378,143 @@ main {
     outline: none;
     box-shadow: none;
 }
-  
+
+
+
+
+
+/*obi- styling for recipe and ingredients*/
+/* Shared Dropdown Styling */
+.dropdown {
+    margin: 20px 0;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 6px 12px rgba(0,0,0,0.08);
+}
+
+.dropdown-btn {
+    width: 100%;
+    text-align: left;
+    padding: 15px 20px;
+    font-size: 20px;
+    font-weight: bold;
+    border: none;
+    cursor: pointer;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Section-Specific Dropdown Styles */
+/* Pastel-themed Dropdown Styling */
+.dropdown.green .dropdown-btn {
+    background-color: #d5f5e3; /* pastel light green */
+    color: #1e3e2e;
+    font-weight: bold;
+}
+
+.dropdown.yellow .dropdown-btn {
+    background-color: #fcf3cf; /* pastel yellow */
+    color: #5b4a00;
+    font-weight: bold;
+}
+
+.dropdown.pink .dropdown-btn {
+    background-color: #e67e88;
+}
+
+/* Dropdown content */
+.dropdown-content {
+    background-color: #fff;
+    display: none;
+    padding: 20px;
+    font-size: 16px;
+    color: #333;
+    border-top: 1px solid #ccc;
+}
+
+.dropdown-content ul,
+.dropdown-content ol {
+    padding-left: 20px;
+}
+
+.dropdown-content li {
+    margin-bottom: 8px;
+    line-height: 1.6;
+}
+
+/* Recipe Step List Styling */
+.step-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.step-item {
+    background-color: #fcf3cf; /* pastel yellow */
+    border-radius: 12px;
+    padding: 14px 18px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+    transition: background-color 0.2s ease;
+}
+
+.step-checkbox {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    border: 2px solid #444;
+    appearance: none;
+    cursor: pointer;
+    position: relative;
+}
+
+.step-checkbox:checked::before {
+    content: "";
+    position: absolute;
+    top: 3px;
+    left: 3px;
+    width: 10px;
+    height: 10px;
+    background-color: #4CAF50;
+    border-radius: 50%;
+}
+
+.step-label {
+    font-size: 16px;
+    color: #1e3e2e;
+    cursor: pointer;
+}
+
+/* Ingredient Item Styling */
+.ingredient-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.ingredient-item {
+    background-color: #fcf3cf; /* pastel yellow */
+    padding: 12px 16px;
+    border-radius: 12px;
+    font-size: 16px;
+    color: #5b4a00;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.05);
+}
+.ingredient-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.ingredient-item {
+    background-color: #d5f5e3; /* pastel light green */
+    padding: 12px 16px;
+    border-radius: 12px;
+    font-size: 16px;
+    color: #1e3e2e;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05);
+}

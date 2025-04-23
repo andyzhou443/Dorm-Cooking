@@ -7,11 +7,11 @@
 <div class="dropdown green">
     <button class="dropdown-btn">Ingredients <span>▼</span></button>
     <div class="dropdown-content">
-        <ul>
+        <div class="ingredient-list">
             {% for item in recipe.ingredients %}
-                <li>{{ item }}</li>
+            <div class="ingredient-item">{{ item }}</div>
             {% endfor %}
-        </ul>
+        </div>
     </div>
 </div>
 
@@ -19,11 +19,16 @@
 <div class="dropdown yellow">
     <button class="dropdown-btn">Recipe <span>▼</span></button>
     <div class="dropdown-content">
-        <ol>
+        <div class="step-list">
             {% for step in recipe.steps %}
-                <li>{{ step }}</li>
+            <div class="step-item">
+                <input type="checkbox" id="step{{ loop.index }}" class="step-checkbox">
+                <label for="step{{ loop.index }}" class="step-label">
+                    <strong>Step {{ loop.index }}:</strong> {{ step }}
+                </label>
+            </div>
             {% endfor %}
-        </ol>
+        </div>
     </div>
 </div>
 
