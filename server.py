@@ -48,9 +48,15 @@ recipes = {
         "difficulty": "Easy",
         "ingredients": ["1 can chickpeas (15 oz), drained and rinsed", "1 cucumber, diced", "1 small red onion, finely chopped", "½ cup crumbled feta cheese", "2–3 tablespoons olive oil", "2 tablespoons lemon juice (freshly squeezed)"],
         "steps": [
-            "Rinse chickpeas and drain.",
-            "Chop cucumber, onion, and feta.",
-            "Mix everything in a bowl and dress with olive oil and lemon juice."
+            "Drain and rinse 1 can (15 oz) of chickpeas.",
+            "Dice 1 cucumber and finely chop 1 small red onion.",
+            "Optional: Soak chopped onion in cold water for 10 minutes to reduce sharpness, then drain.",
+            "In a large bowl, combine the chickpeas, cucumber, and red onion.",
+            "Add 1/2 cup crumbled feta cheese to the bowl.",
+            "Drizzle with 2–3 tablespoons olive oil and 2 tablespoons fresh lemon juice.",
+            "Optional: Season with salt, pepper, and a dash of dried oregano.",
+            "Toss everything gently until well mixed.",
+            "Refrigerate for 15–30 minutes for best flavor before serving."
         ],
         "quiz": [
             {
@@ -100,12 +106,21 @@ recipes = {
         "cost": "$",
         "genre": "Breakfast",
         "difficulty": "Easy",
-        "ingredients": ["2 slices of bread", "1 ripe avocado", "Lemon juice", "Salt", "Pepper", "Olive oil"],
+        "ingredients": [
+            "2 slices of whole grain or sourdough bread",
+            "1 ripe avocado",
+            "1 tablespoon lemon juice",
+            "1/8 teaspoon salt",
+            "1/8 teaspoon black pepper",
+            "1 teaspoon olive oil"
+        ],
         "steps": [
-            "Toast the slices of bread.",
-            "Mash the avocado with lemon juice, salt, and pepper.",
-            "Spread the mashed avocado onto the toasted bread.",
-            "Drizzle with olive oil and serve."
+            "Toast 2 slices of bread to your desired crispness.",
+            "Cut the avocado in half, remove the pit, and scoop the flesh into a bowl.",
+            "Mash the avocado with 1 tablespoon lemon juice, 1/8 teaspoon salt, and 1/8 teaspoon black pepper until creamy.",
+            "Spread the mashed avocado evenly on each slice of toasted bread.",
+            "Drizzle with 1 teaspoon olive oil.",
+            "Optional: top with red pepper flakes, sliced cherry tomatoes, or a poached egg. Serve immediately."
         ],
         "quiz": [
             {
@@ -131,13 +146,25 @@ recipes = {
         "cost": "$$",
         "genre": "Lunch/Dinner",
         "difficulty": "Medium",
-        "ingredients": ["1 chicken breast", "1 bell pepper", "1 onion", "Soy sauce", "Garlic", "Ginger", "Olive oil"],
+        "ingredients": [
+            "1 boneless, skinless chicken breast (about 6–8 oz)",
+            "1 bell pepper (any color), sliced",
+            "1 small onion, sliced",
+            "2 tablespoons soy sauce",
+            "2 cloves garlic, minced",
+            "1 teaspoon fresh grated ginger (or 1/2 tsp ground)",
+            "2 tablespoons olive oil (or vegetable oil)",
+            "Optional: 1/2 cup broccoli florets or snap peas"
+        ],
         "steps": [
-            "Cut the chicken breast into strips.",
-            "Chop the bell pepper and onion.",
-            "Heat olive oil in a pan and cook the chicken until browned.",
-            "Add the garlic, ginger, onion, and bell pepper, and stir-fry for 5-7 minutes.",
-            "Add soy sauce and stir for another minute. Serve."
+            "Slice the chicken breast into thin strips.",
+            "Chop the bell pepper and onion into bite-sized pieces.",
+            "Heat 1 tablespoon of oil in a large skillet or wok over medium-high heat.",
+            "Add the chicken and stir-fry until lightly browned and cooked through, about 5–7 minutes.",
+            "Remove chicken and set aside. Add the remaining tablespoon of oil to the pan.",
+            "Add the garlic, ginger, onion, and bell pepper (and optional veggies), and stir-fry for 3–5 minutes until tender-crisp.",
+            "Return the chicken to the pan, pour in 2 tablespoons soy sauce, and toss everything together for 1 more minute.",
+            "Serve hot with rice or noodles if desired."
         ],
         "quiz": [
             {
@@ -163,12 +190,21 @@ recipes = {
         "cost": "$$",
         "genre": "Lunch/Dinner",
         "difficulty": "Medium",
-        "ingredients": ["2 tortillas", "Cheese", "Sour cream", "Salsa", "Chicken or beef (optional)"],
+        "ingredients": [
+            "2 flour tortillas (8-inch)",
+            "1 cup shredded cheese (cheddar, Monterey Jack, or Mexican blend)",
+            "1/2 cup cooked and shredded chicken or beef (optional)",
+            "1 tablespoon butter or oil",
+            "Sour cream, for serving",
+            "Salsa, for serving"
+        ],
         "steps": [
-            "Heat a tortilla in a pan over medium heat.",
-            "Add cheese and optional meat on one half of the tortilla.",
-            "Fold the tortilla and cook until both sides are golden and the cheese is melted.",
-            "Serve with sour cream and salsa."
+            "Heat a nonstick skillet over medium heat and add 1/2 tablespoon butter or oil.",
+            "Place one tortilla in the skillet. Sprinkle half of the cheese evenly over half the tortilla.",
+            "Add optional cooked chicken or beef on top of the cheese.",
+            "Fold the tortilla in half over the filling. Cook for 2–3 minutes per side until golden brown and cheese is melted.",
+            "Repeat with the second tortilla using the remaining ingredients.",
+            "Slice into wedges and serve with sour cream and salsa on the side."
         ],
         "quiz": [
             {
