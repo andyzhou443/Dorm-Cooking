@@ -86,6 +86,7 @@
 <script>
     let currentQuestionIndex = 0;
     let score = 0;
+    let questionAnswered = false; // Track if current question has been answered
 
     const questionNumberElement = document.getElementById('question-number');
     const questionTextElement   = document.getElementById('question-text');
@@ -102,6 +103,7 @@
     function initializeQuiz() {
         currentQuestionIndex = 0;
         score = 0;
+        questionAnswered = false;
         scoreElement.textContent = score;
         quizContent.style.display      = 'block';
         completionScreen.style.display = 'none';
@@ -115,6 +117,7 @@
         questionTextElement.textContent = currentQuestion.question;
         feedbackContainer.style.display = 'none';
         nextButton.disabled = true;
+        questionAnswered = false; // Reset for new question
 
         optionsContainer.innerHTML = '';
 
@@ -124,6 +127,11 @@
             btn.textContent = option;
 
             btn.addEventListener('click', () => {
+                if (questionAnswered) {
+                    return;
+                }
+                questionAnswered = true;
+                
                 // clear previous highlights
                 document.querySelectorAll('.option')
                         .forEach(opt => opt.classList.remove('selected','correct','incorrect'));
