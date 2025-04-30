@@ -1,4 +1,3 @@
-
 :root { 
     --base-color: #2C3E50; 
     --accent-color: #E74C3C; 
@@ -6,12 +5,11 @@
     --dark-grey: #34495E;  
 }
 
-
 /* Base Styling */
 body {
     background-color: #FAFAFA; /* or just white */
     color: #1C1C1C; /* dark gray for text */
-    font-family: 'Segoe UI', sans-serif;
+    font-family: "Segoe UI", Roboto, -apple-system, BlinkMacSystemFont, Helvetica, Arial, sans-serif;
     margin: 0;
     padding: 0;
 }
@@ -21,7 +19,6 @@ main {
     margin-top: 20px; /* Adjust the value as needed */
 }
 
-
 .grey {
     color: var(--light-grey);
 }
@@ -29,9 +26,11 @@ main {
 .darkGreyWord {
     color: var(--dark-grey);
 }
+
 /* Header */
 .base-bg {
     background-color: var(--base-color);
+    padding: 20px;
 }
 
 /* Buttons & Links */
@@ -48,10 +47,10 @@ main {
     color: var(--dark-grey);  
 }
 
-/* Optional: Style the button when hovered */
 .accentColor:hover {
     background-color: darken(var(--accent-color), 10%);  
 }
+
 /* Containers */
 #itemsContainer {
     background-color: var(--light-grey);
@@ -101,7 +100,6 @@ main {
     font-weight: bold;
 }
 
-/* Highlight matched text */
 .highlight {
     background-color: yellow;
     font-weight: bold;
@@ -112,19 +110,11 @@ main {
     line-height: 1.6;  
 }
 
-.base-bg {
-    padding: 20px;     
-}
-
-
 .highlight-query {
     color: var(--accent-color); 
     font-weight: bold;
 }
 
-
-
-        
 .quiz-container {
     background-color: #ffd1d1;
     border-radius: 15px;
@@ -325,9 +315,9 @@ main {
     background-color: rgba(0,0,0,0.4);
     justify-content: center;
     align-items: center;
-  }
-  
-  .modal-content {
+}
+
+.modal-content {
     background-color: white;
     padding: 2rem;
     border-radius: 20px;
@@ -335,19 +325,19 @@ main {
     text-align: center;
     box-shadow: 0 8px 20px rgba(0,0,0,0.25);
     position: relative;
-  }
-  
-  .modal-content h2 {
+}
+
+.modal-content h2 {
     color: #103E20;
     margin-bottom: 1rem;
-  }
-  
-  .modal-content p {
+}
+
+.modal-content p {
     margin: 0.5rem 0;
     color: #333;
-  }
-  
-  #begin-button {
+}
+
+#begin-button {
     background-color: #6FA36F;
     color: white;
     border: none;
@@ -356,13 +346,13 @@ main {
     font-size: 1.1rem;
     margin-top: 1rem;
     cursor: pointer;
-  }
-  
-  #begin-button:hover {
+}
+
+#begin-button:hover {
     background-color: #5d925d;
-  }
-  
-  .close-btn {
+}
+
+.close-btn {
     position: absolute;
     top: 12px;
     right: 16px;
@@ -370,21 +360,16 @@ main {
     font-weight: bold;
     color: #C0392B;
     cursor: pointer;
-  }
+}
 
-  /* Remove outline on active/focused buttons */
+/* Remove outline on active/focused buttons */
 .navbar .navbar-nav .btn:focus, 
 .navbar .navbar-nav .btn:active {
     outline: none;
     box-shadow: none;
 }
 
-
-
-
-
-/*obi- styling for recipe and ingredients*/
-/* Shared Dropdown Styling */
+/* Dropdowns and Recipe UI */
 .dropdown {
     margin: 20px 0;
     border-radius: 15px;
@@ -406,16 +391,14 @@ main {
     align-items: center;
 }
 
-/* Section-Specific Dropdown Styles */
-/* Pastel-themed Dropdown Styling */
 .dropdown.green .dropdown-btn {
-    background-color: #d5f5e3; /* pastel light green */
+    background-color: #d5f5e3;
     color: #1e3e2e;
     font-weight: bold;
 }
 
 .dropdown.yellow .dropdown-btn {
-    background-color: #fcf3cf; /* pastel yellow */
+    background-color: #fcf3cf;
     color: #5b4a00;
     font-weight: bold;
 }
@@ -424,7 +407,6 @@ main {
     background-color: #e67e88;
 }
 
-/* Dropdown content */
 .dropdown-content {
     background-color: #fff;
     display: none;
@@ -444,7 +426,7 @@ main {
     line-height: 1.6;
 }
 
-/* Recipe Step List Styling */
+/* Steps and Equipment */
 .step-list {
     display: flex;
     flex-direction: column;
@@ -452,7 +434,7 @@ main {
 }
 
 .step-item {
-    background-color: #fcf3cf; /* pastel yellow */
+    background-color: #fcf3cf;
     border-radius: 12px;
     padding: 14px 18px;
     display: flex;
@@ -489,7 +471,6 @@ main {
     cursor: pointer;
 }
 
-/* Equipment Item Styling */
 .equipment-list {
     display: flex;
     flex-direction: column;
@@ -497,14 +478,14 @@ main {
 }
 
 .equipment-item {
-    background-color: #b3b3b3; /* gray */
+    background-color: #b3b3b3;
     padding: 12px 16px;
     border-radius: 12px;
     font-size: 16px;
     color: #000000;
     box-shadow: 0 1px 4px rgba(0,0,0,0.05);
 }
-/* Ingredient Item Styling */
+
 .ingredient-list {
     display: flex;
     flex-direction: column;
@@ -512,7 +493,7 @@ main {
 }
 
 .ingredient-item {
-    background-color: #d5f5e3; /* pastel light green */
+    background-color: #d5f5e3;
     padding: 12px 16px;
     border-radius: 12px;
     font-size: 16px;
