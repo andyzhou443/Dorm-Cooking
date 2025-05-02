@@ -27,6 +27,9 @@
     </div>
 </div>
 
+
+<!-- RECIPE DROPDOWN -->
+
 <!-- RECIPE DROPDOWN -->
 <div class="dropdown yellow">
     <button class="dropdown-btn">Recipe <span>▼</span></button>
@@ -34,10 +37,17 @@
         <div class="step-list">
             {% for step in recipe.steps %}
             <div class="step-item">
-                <input type="checkbox" id="step{{ loop.index }}" class="step-checkbox">
-                <label for="step{{ loop.index }}" class="step-label">
-                    <strong>Step {{ loop.index }}:</strong> {{ step }}
-                </label>
+                <div class="step-row">
+                    <div class="step-text">
+                        <input type="checkbox" id="step{{ loop.index }}" class="step-checkbox">
+                        <label for="step{{ loop.index }}" class="step-label">
+                            <strong>Step {{ loop.index }}:</strong> {{ step }}
+                        </label>
+                    </div>
+                    <div class="step-video">
+                        <img src="{{ recipe.videos[loop.index0] }}" alt="Step {{ loop.index }} video" class="step-gif">
+                    </div>
+                </div>
             </div>
             {% endfor %}
         </div>

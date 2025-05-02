@@ -500,3 +500,28 @@ main {
     color: #1e3e2e;
     box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05);
 }
+
+
+.step-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 15px;
+}
+
+.step-text {
+    flex: 1;
+    padding-right: 15px;
+}
+
+.step-video {
+    flex: 0 0 200px; /* Fixed width for all GIFs */
+}
+
+.step-gif {
+    width: 100%;
+    height: 150px; /* Fixed height for all GIFs */
+    object-fit: cover; /* Maintains aspect ratio while filling the container */
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
