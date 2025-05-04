@@ -10,15 +10,34 @@
       "ingredients": ["2 eggs", "1 tbsp butter", "Salt", "Pepper"],
       "steps": [
         "Crack eggs into a bowl.",
-        "Whisk until yolks and whites are blended.",
-        "Heat butter in pan over medium heat.",
-        "Pour in eggs and stir until cooked through."
+        "(Optional) Add salt and pepper for taste.",
+        "Whisk until yolks and whites are completely blended.",
+        "(Optional) Add 1 tbsp of milk or water for fluffier eggs and whisk again.",
+        "Place pan on stove and turn to medium heat.",
+        "Add butter to the pan and let it melt completely.",
+        "Tilt the pan to ensure the butter coats the surface evenly.",
+        "Pour the egg mixture into the hot pan.",
+        "Let the eggs sit undisturbed for a few seconds until they just begin to set.",
+        "Use a spatula to gently push the eggs from the edges toward the center.",
+        "Continue gently stirring and folding the eggs until they are mostly cooked but still a bit glossy.",
+        "Remove the pan from heat while eggs are slightly underdone (they will finish cooking off heat).",
+        "Serve immediately for best texture and flavor."
       ],
       "videos": [
         "https://i.makeagif.com/media/6-29-2016/-cTUue.gif",
+        "",
         "https://media1.tenor.com/m/IpPvbRPnHIQAAAAC/egg-stirring-stir-egg.gif",
+        "https://throwdownkitchen.com/wp-content/uploads/2021/03/beat-the-eggs-and-milk.gif",
+        "",
         "https://i.gifer.com/1ZEx.gif",
-        "https://i.pinimg.com/originals/88/df/1c/88df1c5a44252d1562f3db9d8af30609.gif"
+        "",
+        "",
+        "",
+        "https://i.pinimg.com/originals/88/df/1c/88df1c5a44252d1562f3db9d8af30609.gif",
+        "",
+        "",
+        "",
+        ""
       ],
       "quiz": [
         {
@@ -39,6 +58,49 @@
           ],
           "correct": 0,
           "explanation": "Stopping when eggs are mostly set but still slightly liquid ensures a creamy texture."
+        },
+        {
+          "id": 3,
+          "question": "What level of heat should you use to cook the eggs?",
+          "options": ["No heat", "Low", "Medium", "High"],
+          "correct": 2,
+          "explanation": "Medium heat prevents the eggs from overcooking and turning rubbery."
+        },
+        {
+          "id": 4,
+          "question": "Why should you remove the eggs from heat before they're fully set?",
+          "options": [
+            "To make cleanup easier",
+            "Because they will continue cooking off the heat",
+            "To keep them cold",
+            "To prevent the butter from burning"
+          ],
+          "correct": 1,
+          "explanation": "Eggs retain heat and finish cooking after being removed from the pan."
+        },
+        {
+          "id": 5,
+          "question": "What is the purpose of stirring eggs slowly while cooking?",
+          "options": [
+            "To keep them raw",
+            "To form large curds and an even texture",
+            "To make them stick to the pan",
+            "To overcook them"
+          ],
+          "correct": 1,
+          "explanation": "Slow stirring creates larger, soft curds for better texture."
+        },
+        {
+          "id": 6,
+          "question": "What does adding milk or water to scrambled eggs do?",
+          "options": [
+            "Makes them spicy",
+            "Adds color",
+            "Makes them fluffier",
+            "Burns them faster"
+          ],
+          "correct": 2,
+          "explanation": "Milk or water adds steam during cooking, making the eggs more airy and fluffy."
         }
       ]
     },
