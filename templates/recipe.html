@@ -29,24 +29,20 @@
 
 
 <!-- RECIPE DROPDOWN -->
-
-<!-- RECIPE DROPDOWN -->
 <div class="dropdown yellow">
     <button class="dropdown-btn">Recipe <span>▼</span></button>
     <div class="dropdown-content">
         <div class="step-list">
             {% for step in recipe.steps %}
             <div class="step-item">
-                <div class="step-row">
-                    <div class="step-text">
-                        <input type="checkbox" id="step{{ loop.index }}" class="step-checkbox">
-                        <label for="step{{ loop.index }}" class="step-label">
-                            <strong>Step {{ loop.index }}:</strong> {{ step }}
-                        </label>
-                    </div>
-                    <div class="step-video">
-                        <img src="{{ recipe.videos[loop.index0] }}" alt="Step {{ loop.index }} video" class="step-gif">
-                    </div>
+                <div class="step-text">
+                    <input type="checkbox" id="step{{ loop.index }}" class="step-checkbox">
+                    <label for="step{{ loop.index }}" class="step-label">
+                        <strong>Step {{ loop.index }}:</strong> {{ step }}
+                    </label>
+                </div>
+                <div class="step-video">
+                    <img src="{{ recipe.videos[loop.index0] }}" alt="Step {{ loop.index }} video" class="step-gif">
                 </div>
             </div>
             {% endfor %}
@@ -69,8 +65,13 @@
     <div class="quiz-modal">
         <div id="quiz-content">
             <div class="quiz-header">
-                <h2 id="question-number">Question 1 of 2</h2>
-                <div class="score-display">Score: <span id="score">0</span></div>
+                <div class="quiz-header-content">
+                    <h2 id="question-number">Question 1 of 2</h2>
+                    <div class="quiz-top-right">
+                        <div class="score-display">Score: <span id="score">0</span></div>
+                        <button id="quit-quiz-btn" class="quit-quiz-btn">✕</button>
+                    </div>
+                </div>
             </div>
 
             <div id="feedback-container" class="feedback" style="display: none;">
@@ -137,7 +138,7 @@
         margin: 20px auto;
     }
     
-    .close-quiz-btn {
+    .close-quiz-btn, .quit-quiz-btn {
         background-color: #6c757d;
         color: white;
         padding: 10px 20px;
@@ -146,6 +147,65 @@
         cursor: pointer;
         margin-top: 15px;
         margin-left: 10px;
+    }
+    
+    .quit-quiz-btn {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        font-size: 14px;
+        padding: 5px 10px;
+        margin: 0;
+    }
+    
+    .quiz-header {
+        position: relative;
+        margin-bottom: 20px;
+    }
+    
+    /* Add styling for recipe steps */
+    .step-item {
+        margin-bottom: 20px;
+    }
+    
+    .step-text {
+        margin-bottom: 10px;
+    }
+    
+    .step-video {
+        display: flex;
+        justify-content: center;
+        margin-top: 10px;
+    }
+    
+    .step-gif {
+        max-width: 100%;
+        border-radius: 5px;
+    }
+    .option {
+        padding: 10px;
+        margin: 5px 0;
+        border-radius: 5px;
+        cursor: pointer;
+        border: 1px solid #ddd;
+    }
+    
+    .option:hover {
+        background-color: #f0f0f0;
+    }
+    
+    .option.correct {
+        background-color: #4CAF50;  /* Green background for correct answers */
+        color: white;
+    }
+    
+    .option.incorrect {
+        background-color: #f44336;  /* Red background for incorrect answers */
+        color: white;
+    }
+    
+    .option.selected {
+        border: 2px solid #2196F3;
     }
 </style>
 
@@ -169,6 +229,20 @@
     const finalScoreElement     = document.getElementById('final-score');
     const restartButton         = document.getElementById('restart-btn');
     const closeQuizButton       = document.getElementById('close-quiz-btn');
+    const quitQuizButton        = document.getElementById('quit-quiz-btn');
+
+    document.addEventListener('DOMContentLoaded', function () {
+    const toggleCheck = (selector) => {
+      document.querySelectorAll(selector).forEach(item => {
+        item.addEventListener('click', () => {
+          item.classList.toggle('checked');
+        });
+      });
+    };
+
+    toggleCheck('.equipment-item');
+    toggleCheck('.ingredient-item');
+  });
 
     startQuizButton.addEventListener('click', () => {
         quizOverlay.style.display = 'flex';
@@ -176,6 +250,10 @@
     });
 
     closeQuizButton.addEventListener('click', () => {
+        quizOverlay.style.display = 'none';
+    });
+    
+    quitQuizButton.addEventListener('click', () => {
         quizOverlay.style.display = 'none';
     });
 

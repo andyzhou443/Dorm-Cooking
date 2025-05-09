@@ -6,8 +6,8 @@
       "cost": "$",
       "genre": "Breakfast",
       "difficulty": "Easy",
-      "equipment": ["Pan", "Stove", "Whisk", "Bowl"],
-      "ingredients": ["2 eggs", "1 tbsp butter", "Salt", "Pepper"],
+      "equipment": ["Nonstick Pan", "Stove", "Whisk", "Mixing Bowl"],
+      "ingredients": ["2 eggs", "1 tbsp butter", "Salt (Optional)", "Pepper (Optional)", "Milk - Any Type(Optional), Water (Optional)"],
       "steps": [
         "Crack eggs into a bowl.",
         "(Optional) Add salt and pepper for taste.",
