@@ -2,49 +2,30 @@
 
 {% block content %}
 <div class="text-center mt-5">
-    <h1 class="recommended-heading ">View a Recommended Recipe to get Started</h1>
-    <div class="text-center" style="color: #103E20;">Learn to make a simple, healthy meal using everyday ingredients from your kitchen!</div>
-    <br>
-    <div class="d-flex justify-content-center gap-4 flex-wrap">
-        <!-- Recipe Card 1 -->
-        <div class="recipe-card" data-recipe-id="1">
-            <img src="{{ url_for('static', filename='img/scrambled_eggs.jpg') }}" class="recipe-img" alt="Scrambled Eggs">
-            <div class="recipe-details">
-                <div class="recipe-title">Scrambled Eggs</div>
-                <div class="recipe-time">5 Minutes</div>
-            </div>
-        </div>
-
-        <!-- Recipe Card 2 -->
-        <div class="recipe-card" data-recipe-id="2">
-            <img src="{{ url_for('static', filename='img/chickpea_salad.jpg') }}" class="recipe-img" alt="Chickpea Salad">
-            <div class="recipe-details">
-                <div class="recipe-title">Mediterranean Chickpea Salad</div>
-                <div class="recipe-time">20 Minutes</div>
-            </div>
-        </div>
-
-        <!-- Recipe Card 3 -->
-        <div class="recipe-card" data-recipe-id="3">
-            <img src="{{ url_for('static', filename='img/sausage_egg_cheese.jpg') }}" class="recipe-img" alt="Sausage Egg n' Cheese">
-            <div class="recipe-details">
-                <div class="recipe-title">Sausage Egg n’ Cheese</div>
-                <div class="recipe-time">15 Minutes</div>
-            </div>
-        </div>
+    <h1 class="recommended-heading">Dorm Cooking</h1>
+    <div class="text-center" style="color: #103E20;">
+        Learn to make a simple, healthy meal using everyday ingredients from your kitchen!
     </div>
-    
-    <div id="recipeModal" class="modal">
-        <div class="modal-content">
-          <span class="close-btn">&times;</span>
-          <h2 id="modal-title">Recipe Title</h2>
-          <p><strong>Difficulty:</strong> <span id="modal-difficulty"></span></p>
-          <p><strong>Time:</strong> <span id="modal-time"></span></p>
-          <p><strong>Cost:</strong> <span id="modal-cost"></span></p>
-          <p><strong>Genre:</strong> <span id="modal-genre"></span></p>
-          <button id="begin-button">Begin</button>
+    <br>
+
+    <div class="d-flex justify-content-center gap-4 flex-wrap">
+
+        {% for recipe_id, recipe in random_recipes %}
+        <div class="recipe-card" data-recipe-id="{{ recipe_id }}">
+            <img src="{{ url_for('static', filename='img/' + recipe.image) }}" class="recipe-img" alt="{{ recipe.name }}">
+            <div class="recipe-details">
+                <div class="recipe-title">{{ recipe.name }}</div>
+                <div class="recipe-info">
+                    <p>{{ recipe.time }}</p>
+                    <p><strong>Cost:</strong> {{ recipe.cost }}</p>
+                    <p><strong>Difficulty:</strong> {{ recipe.difficulty }}</p>
+                    <p><strong>Genre:</strong> {{ recipe.genre }}</p>
+                </div>
+                <a href="/recipes/{{ recipe_id }}" class="btn btn-success mt-2">Start Cooking</a>
+            </div>
         </div>
+        {% endfor %}
+
     </div>
 </div>
-
 {% endblock %}

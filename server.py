@@ -1,3 +1,4 @@
+import random
 from flask import Flask
 from flask import render_template
 from flask import Response, request, jsonify
@@ -16,13 +17,19 @@ def load_recipes():
 recipes = load_recipes()
 
 
+def get_random_recipes(n=3):
+    # returns a list of (recipe_id, recipe_dict) tuples
+    return random.sample(list(recipes.items()), n)
+
+
 current_id = 4
 
 # ROUTES
 
 @app.route('/')
 def home():
-   return render_template('index.html', recipes=recipes)  
+    random_recipes = get_random_recipes(3)
+    return render_template('index.html', random_recipes=random_recipes)
 
 @app.route('/about')
 def about():
