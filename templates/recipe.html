@@ -308,6 +308,15 @@
                     feedbackTextElement.textContent = currentQuestion.explanation;
                 }
 
+                // Remove previous status classes
+                feedbackContainer.classList.remove('correct', 'incorrect');
+
+                if (index === currentQuestion.correct) {
+                    feedbackContainer.classList.add('correct');
+                } else {
+                    feedbackContainer.classList.add('incorrect');
+                }
+
                 feedbackContainer.style.display = 'block';
                 nextButton.disabled = false;
             });
