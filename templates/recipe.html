@@ -63,13 +63,13 @@
 <!-- QUIZ OVERLAY -->
 <div id="quiz-overlay" class="quiz-overlay" style="display: none;">
     <div class="quiz-modal">
+        <button id="quit-quiz-btn" class="close-btn" aria-label="Quit Quiz">&times;</button>
         <div id="quiz-content">
             <div class="quiz-header">
                 <div class="quiz-header-content">
                     <h2 id="question-number">Question 1 of 2</h2>
                     <div class="quiz-top-right">
                         <div class="score-display">Score: <span id="score">0</span></div>
-                        <button id="quit-quiz-btn" class="quit-quiz-btn">✕</button>
                     </div>
                 </div>
             </div>
@@ -91,7 +91,11 @@
             <h1 class="completed-message">Quiz Completed!</h1>
             <p class="completed-message">Your final score: <span id="final-score">0</span>/{{ recipe.quiz|length }}</p>
             <button id="restart-btn" class="restart-btn">Take Quiz Again</button>
-            <button id="close-quiz-btn" class="close-quiz-btn">Close Quiz</button>
+            <div id="review-container" class="review-container"></div>
+            <div class="completion-buttons">
+                
+                <button id="close-quiz-btn" class="close-quiz-btn">Close Quiz</button>
+            </div>
         </div>
     </div>
 </div>
@@ -117,13 +121,15 @@
     }
     
     .quiz-modal {
+        display: flex;
+        flex-direction: column;
         background-color: white;
         padding: 2rem;
         border-radius: 10px;
         width: 80%;
         max-width: 800px;
         max-height: 90vh;
-        overflow-y: auto;
+        overflow-y: hidden;
     }
     
     .start-quiz-btn {
@@ -203,14 +209,24 @@
         background-color: #f44336;  /* Red background for incorrect answers */
         color: white;
     }
-    
-    .option.selected {
-        border: 2px solid #2196F3;
+
+    .review-container {
+        margin-top: 20px;
+        max-height: 400px;       /* adjust as you like */
+        overflow-y: auto;
+        border-top: 1px solid #ddd;
+        padding-top: 15px;
+    }
+
+    #completion-screen > button {
+        margin-top: 0.5rem;
+        flex-shrink: 0;      /* buttons never shrink away */
     }
 </style>
 
 <!-- QUIZ LOGIC -->
 <script>
+    let userSelections = [];  // store chosen index per question
     let currentQuestionIndex = 0;
     let score = 0;
     let questionAnswered = false; // Track if current question has been answered
@@ -261,6 +277,7 @@
         currentQuestionIndex = 0;
         score = 0;
         questionAnswered = false;
+        userSelections = [];
         scoreElement.textContent = score;
         quizContent.style.display      = 'block';
         completionScreen.style.display = 'none';
@@ -288,6 +305,9 @@
                     return;
                 }
                 questionAnswered = true;
+
+                // record selection:
+                userSelections[currentQuestionIndex] = index;
                 
                 // clear previous highlights
                 document.querySelectorAll('.option')
@@ -330,11 +350,57 @@
         if (currentQuestionIndex < quizData.length) {
             loadQuestion();
         } else {
+            // hide quiz UI
             quizContent.style.display      = 'none';
             completionScreen.style.display = 'block';
             finalScoreElement.textContent  = score;
+
+            // build review
+            const review = document.getElementById('review-container');
+            review.innerHTML = '';  // clear old
+
+            quizData.forEach((q, i) => {
+            // question wrapper
+            const qDiv = document.createElement('div');
+            qDiv.classList.add('review-question');
+
+            // question text
+            const qText = document.createElement('p');
+            qText.classList.add('question');
+            qText.innerHTML = `Question ${i+1}: ${q.question}`;
+            qDiv.appendChild(qText);
+
+            // options list
+            q.options.forEach((opt, idx) => {
+                const optDiv = document.createElement('div');
+                optDiv.classList.add('option');
+
+                // mark user’s pick
+                if (userSelections[i] === idx) {
+                optDiv.classList.add('selected');
+                }
+                // mark correctness
+                if (idx === q.correct) {
+                optDiv.classList.add('correct');
+                } else if (userSelections[i] === idx && idx !== q.correct) {
+                optDiv.classList.add('incorrect');
+                }
+
+                optDiv.textContent = opt;
+                qDiv.appendChild(optDiv);
+            });
+
+            // explanation
+            const expl = document.createElement('p');
+            expl.classList.add('explanation');
+            expl.innerHTML = `<em>Explanation:</em> ${q.explanation}`;
+            qDiv.appendChild(expl);
+
+            review.appendChild(qDiv);
+            });
         }
     });
+
 
     restartButton.addEventListener('click', initializeQuiz);
 </script>
