@@ -47,15 +47,9 @@ def show_recipe(recipe_id):
         return f"Recipe with ID {recipe_id} not found", 404
     return render_template("recipe.html", recipe=recipe)
 
-@app.route("/ingredients")
-def ingredients():
-    return render_template('ingredients.html')
-
-@app.route("/equipment")
-def equipment():
-    return render_template('equipment.html')
-
-
+@app.route("/quizzes")
+def quizzes():
+    return render_template('quizzes.html')
 
 if __name__ == '__main__':
    app.run(debug = True, port=5001)
