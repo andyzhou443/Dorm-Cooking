@@ -131,6 +131,7 @@
         "Toss everything gently until well mixed.",
         "Refrigerate for 15–30 minutes for best flavor before serving."
       ],
+
       "quiz": [
         {
           "id": 1,
@@ -231,6 +232,16 @@
         "1 teaspoon fresh grated ginger (or 1/2 tsp ground)",
         "2 tablespoons olive oil (or vegetable oil)",
         "Optional: 1/2 cup broccoli florets or snap peas"
+      ],
+      "videos": [
+        "https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExZnc1OWFmdWo0bWh6MDVsMnB5a3Rtb3A2MXY2bGt1bGJ1dHd1bnYzMiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/UMEx415Vjukcq6DZrV/giphy.gif",
+        "https://assets.epicurious.com/photos/5a970e45ea6d946954943a10/6:4/w_1600%2Cc_limit/knife%2520skills%2520how%2520to%2520slice%2520a%2520bell%2520pepper%25201%2520022818.gif",
+        "https://media.tenor.com/OUJhUJbTNacAAAAM/oil-pan.gif",
+        "https://media.giphy.com/media/VCsJEHwOq8L1nyX34Q/giphy.gif",
+        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSSuCrKM6tq0lhylsa9NTqevPDWNK7vMzMZgg&s",
+        "https://media.tenor.com/HmwD758gyL4AAAAM/cozinhando-cooking.gif",
+        "https://ca-times.brightspotcdn.com/dims4/default/7e6e644/2147483647/strip/true/crop/1196x800+2+0/resize/320x214!/quality/75/?url=https%3A%2F%2Fcalifornia-times-brightspot.s3.amazonaws.com%2F08%2F26%2F3febacd9451ba36ed18c2b2e8d7a%2Fla-fo-how-to-boil-water-fried-rice.GIF",
+        "https://www.forevernomday.com/wp-content/uploads/2017/05/output_crWuAm.gif"
       ],
       "steps": [
         "Slice the chicken breast into thin strips.",
