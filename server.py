@@ -49,7 +49,8 @@ def show_recipe(recipe_id):
 
 @app.route("/quizzes")
 def quizzes():
-    return render_template('quizzes.html')
+    # Pass all recipes (including quiz data) to the quizzes template
+    return render_template('quizzes.html', recipes=recipes)
 
 if __name__ == '__main__':
    app.run(debug = True, port=5001)
