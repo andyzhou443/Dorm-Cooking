@@ -42,7 +42,9 @@
                     </label>
                 </div>
                 <div class="step-video">
-                    <img src="{{ recipe.videos[loop.index0] }}" alt="Step {{ loop.index }} video" class="step-gif">
+                    {% if recipe.videos[loop.index0] %}
+                    <img src="{{ recipe.videos[loop.index0] }}" alt="Step {{ loop.index }} image" class="step-gif">
+                    {% endif %}
                 </div>
             </div>
             {% endfor %}
