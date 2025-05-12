@@ -33,6 +33,7 @@
     <button class="dropdown-btn">Recipe <span>▼</span></button>
     <div class="dropdown-content">
         <div class="step-list">
+            {% set mediaList = recipe.videos | default([]) %}
             {% for step in recipe.steps %}
             <div class="step-item">
                 <div class="step-text">
@@ -42,8 +43,8 @@
                     </label>
                 </div>
                 <div class="step-video">
-                    {% if recipe.videos[loop.index0] %}
-                    <img src="{{ recipe.videos[loop.index0] }}" alt="Step {{ loop.index }} image" class="step-gif">
+                    {% if mediaList[loop.index0] is defined and mediaList[loop.index0] %}
+                    <img src="{{ mediaList[loop.index0] }}" alt="Step {{ loop.index }} image" class="step-gif">
                     {% endif %}
                 </div>
             </div>
