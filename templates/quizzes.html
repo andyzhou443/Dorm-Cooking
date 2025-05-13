@@ -52,4 +52,156 @@
         </div>
     </div>
 </div>
+
+<style>
+    .quiz-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.8);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 1000;
+    }
+
+    .quiz-modal {
+        display: flex;
+        flex-direction: column;
+        background-color: white;
+        padding: 2rem;
+        border-radius: 10px;
+        width: 80%;
+        max-width: 800px;
+        max-height: 90vh;
+        overflow-y: hidden;
+    }
+
+    .quiz-header {
+        position: relative;
+        margin-bottom: 20px;
+    }
+
+    .option {
+        padding: 10px;
+        margin: 5px 0;
+        border-radius: 5px;
+        cursor: pointer;
+        border: 1px solid #ddd;
+    }
+
+    .option:hover {
+        background-color: #f0f0f0;
+    }
+
+    .option.correct {
+        background-color: #4CAF50;
+        color: white;
+    }
+
+    .option.incorrect {
+        background-color: #f44336;
+        color: white;
+    }
+
+    .feedback {
+        margin-top: 15px;
+        padding: 10px;
+        border-radius: 5px;
+        text-align: center;
+        font-weight: bold;
+    }
+
+    .feedback.correct {
+        background-color: #d4edda;
+        color: #155724;
+    }
+
+    .feedback.incorrect {
+        background-color: #f8d7da;
+        color: #721c24;
+    }
+</style>
+
+<script>
+    $(document).ready(function () {
+    let quizData = {}; // Store quiz data for the selected recipe
+    let currentQuestionIndex = 0;
+    let score = 0;
+
+    // Start the quiz for the selected recipe
+    $(".start-quiz-btn").click(function () {
+        const recipeId = $(this).data("recipe-id");
+        quizData = window.recipes[recipeId].quiz; // Load the quiz data for the recipe
+        $("#quiz-overlay").show();
+        initializeQuiz();
+    });
+
+    // Quit the quiz
+    $("#quit-quiz-btn, #close-quiz-btn").click(function () {
+        $("#quiz-overlay").hide();
+    });
+
+    // Restart the quiz
+    $("#restart-btn").click(function () {
+        initializeQuiz();
+    });
+
+    // Initialize the quiz
+    function initializeQuiz() {
+        currentQuestionIndex = 0;
+        score = 0;
+        $("#score").text(score);
+        $("#quiz-content").show();
+        $("#completion-screen").hide();
+        loadQuestion();
+    }
+
+    // Load the current question
+    function loadQuestion() {
+        const question = quizData[currentQuestionIndex];
+        $("#question-number").text(`Question ${currentQuestionIndex + 1} of ${quizData.length}`);
+        $("#question-text").text(question.question);
+        $("#options-container").empty();
+        $("#feedback-container").hide();
+        $("#next-btn").prop("disabled", true);
+
+        question.options.forEach((option, index) => {
+            const button = $("<button>")
+                .addClass("btn btn-outline-primary option-btn")
+                .text(option)
+                .click(() => handleOptionClick(index, question.correct));
+            $("#options-container").append(button);
+        });
+    }
+
+    // Handle option click
+    function handleOptionClick(selectedIndex, correctIndex) {
+        $(".option-btn").prop("disabled", true);
+        if (selectedIndex === correctIndex) {
+            score++;
+            $("#score").text(score);
+            $("#feedback-text").text("Correct!").addClass("text-success").removeClass("text-danger");
+        } else {
+            $("#feedback-text").text("Incorrect!").addClass("text-danger").removeClass("text-success");
+        }
+        $("#feedback-container").show();
+        $("#next-btn").prop("disabled", false);
+    }
+
+    // Load the next question or show the completion screen
+    $("#next-btn").click(function () {
+        currentQuestionIndex++;
+        if (currentQuestionIndex < quizData.length) {
+            loadQuestion();
+        } else {
+            $("#quiz-content").hide();
+            $("#completion-screen").show();
+            $("#final-score").text(score);
+        }
+    });
+});
+</script>
 {% endblock %}
