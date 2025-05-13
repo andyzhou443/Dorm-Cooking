@@ -103,10 +103,6 @@
     </div>
 </div>
 
-<!-- PASS QUIZ DATA FROM FLASK -->
-<script>
-    const quizData = {{ recipe.quiz | tojson }};
-</script>
 
 <!-- Add some CSS for the overlay -->
 <style>
@@ -229,6 +225,9 @@
 
 <!-- QUIZ LOGIC -->
 <script>
+
+    const quizData = {{ recipe.quiz | tojson }};
+    
     let userSelections = [];  // store chosen index per question
     let currentQuestionIndex = 0;
     let score = 0;
@@ -265,6 +264,7 @@
 
     startQuizButton.addEventListener('click', () => {
         quizOverlay.style.display = 'flex';
+        console.log(quizData)
         initializeQuiz();
     });
 
