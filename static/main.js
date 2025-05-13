@@ -1,77 +1,189 @@
 $(document).ready(function () {
-    let quizData = {}; // Store quiz data for the selected recipe
+   
+    const quizData = {{ recipe.quiz | tojson }};
+    
+    let userSelections = [];  // store chosen index per question
     let currentQuestionIndex = 0;
     let score = 0;
+    let questionAnswered = false; // Track if current question has been answered
 
-    // Start the quiz for the selected recipe
-    $(".start-quiz-btn").click(function () {
-        const recipeId = $(this).data("recipe-id");
-        quizData = window.recipes[recipeId].quiz; // Load the quiz data for the recipe
-        $("#quiz-overlay").show();
+    const startQuizButton      = document.getElementById('start-quiz-btn');
+    const quizOverlay          = document.getElementById('quiz-overlay');
+    const questionNumberElement = document.getElementById('question-number');
+    const questionTextElement   = document.getElementById('question-text');
+    const optionsContainer      = document.getElementById('options-container');
+    const nextButton            = document.getElementById('next-btn');
+    const scoreElement          = document.getElementById('score');
+    const feedbackContainer     = document.getElementById('feedback-container');
+    const feedbackTextElement   = document.getElementById('feedback-text');
+    const quizContent           = document.getElementById('quiz-content');
+    const completionScreen      = document.getElementById('completion-screen');
+    const finalScoreElement     = document.getElementById('final-score');
+    const restartButton         = document.getElementById('restart-btn');
+    const closeQuizButton       = document.getElementById('close-quiz-btn');
+    const quitQuizButton        = document.getElementById('quit-quiz-btn');
+
+    document.addEventListener('DOMContentLoaded', function () {
+    const toggleCheck = (selector) => {
+      document.querySelectorAll(selector).forEach(item => {
+        item.addEventListener('click', () => {
+          item.classList.toggle('checked');
+        });
+      });
+    };
+
+    toggleCheck('.equipment-item');
+    toggleCheck('.ingredient-item');
+  });
+
+    startQuizButton.addEventListener('click', () => {
+        quizOverlay.style.display = 'flex';
+        console.log(quizData)
         initializeQuiz();
     });
 
-    // Quit the quiz
-    $("#quit-quiz-btn, #close-quiz-btn").click(function () {
-        $("#quiz-overlay").hide();
+    closeQuizButton.addEventListener('click', () => {
+        quizOverlay.style.display = 'none';
+    });
+    
+    quitQuizButton.addEventListener('click', () => {
+        quizOverlay.style.display = 'none';
     });
 
-    // Restart the quiz
-    $("#restart-btn").click(function () {
-        initializeQuiz();
-    });
-
-    // Initialize the quiz
     function initializeQuiz() {
         currentQuestionIndex = 0;
         score = 0;
-        $("#score").text(score);
-        $("#quiz-content").show();
-        $("#completion-screen").hide();
+        questionAnswered = false;
+        userSelections = [];
+        scoreElement.textContent = score;
+        quizContent.style.display      = 'block';
+        completionScreen.style.display = 'none';
         loadQuestion();
     }
 
-    // Load the current question
     function loadQuestion() {
-        const question = quizData[currentQuestionIndex];
-        $("#question-number").text(`Question ${currentQuestionIndex + 1} of ${quizData.length}`);
-        $("#question-text").text(question.question);
-        $("#options-container").empty();
-        $("#feedback-container").hide();
-        $("#next-btn").prop("disabled", true);
+        const currentQuestion = quizData[currentQuestionIndex];
+        questionNumberElement.textContent = 
+            `Question ${currentQuestionIndex + 1} of ${quizData.length}`;
+        questionTextElement.textContent = currentQuestion.question;
+        feedbackContainer.style.display = 'none';
+        nextButton.disabled = true;
+        questionAnswered = false; // Reset for new question
 
-        question.options.forEach((option, index) => {
-            const button = $("<button>")
-                .addClass("btn btn-outline-primary option-btn")
-                .text(option)
-                .click(() => handleOptionClick(index, question.correct));
-            $("#options-container").append(button);
+        optionsContainer.innerHTML = '';
+
+        currentQuestion.options.forEach((option, index) => {
+            const btn = document.createElement('div');
+            btn.classList.add('option');
+            btn.textContent = option;
+
+            btn.addEventListener('click', () => {
+                if (questionAnswered) {
+                    return;
+                }
+                questionAnswered = true;
+
+                // record selection:
+                userSelections[currentQuestionIndex] = index;
+                
+                // clear previous highlights
+                document.querySelectorAll('.option')
+                        .forEach(opt => opt.classList.remove('selected','correct','incorrect'));
+
+                btn.classList.add('selected');
+
+                if (index === currentQuestion.correct) {
+                    btn.classList.add('correct');
+                    score++;
+                    scoreElement.textContent = score;
+                    feedbackTextElement.textContent = "Correct!";
+                } else {
+                    btn.classList.add('incorrect');
+                    // highlight the right answer
+                    document.querySelectorAll('.option')[currentQuestion.correct]
+                            .classList.add('correct');
+                    feedbackTextElement.textContent = currentQuestion.explanation;
+                }
+
+                // Remove previous status classes
+                feedbackContainer.classList.remove('correct', 'incorrect');
+
+                if (index === currentQuestion.correct) {
+                    feedbackContainer.classList.add('correct');
+                } else {
+                    feedbackContainer.classList.add('incorrect');
+                }
+
+                feedbackContainer.style.display = 'block';
+                nextButton.disabled = false;
+            });
+
+            optionsContainer.appendChild(btn);
         });
     }
 
-    // Handle option click
-    function handleOptionClick(selectedIndex, correctIndex) {
-        $(".option-btn").prop("disabled", true);
-        if (selectedIndex === correctIndex) {
-            score++;
-            $("#score").text(score);
-            $("#feedback-text").text("Correct!").addClass("text-success").removeClass("text-danger");
-        } else {
-            $("#feedback-text").text("Incorrect!").addClass("text-danger").removeClass("text-success");
-        }
-        $("#feedback-container").show();
-        $("#next-btn").prop("disabled", false);
-    }
-
-    // Load the next question or show the completion screen
-    $("#next-btn").click(function () {
+    nextButton.addEventListener('click', () => {
         currentQuestionIndex++;
         if (currentQuestionIndex < quizData.length) {
             loadQuestion();
         } else {
-            $("#quiz-content").hide();
-            $("#completion-screen").show();
-            $("#final-score").text(score);
+            // hide quiz UI
+            quizContent.style.display      = 'none';
+            completionScreen.style.display = 'block';
+            finalScoreElement.textContent  = score;
+
+            // build review
+            const review = document.getElementById('review-container');
+            review.innerHTML = '';  // clear old
+
+            quizData.forEach((q, i) => {
+            // question wrapper
+            const qDiv = document.createElement('div');
+            qDiv.classList.add('review-question');
+
+            // question text
+            const qText = document.createElement('p');
+            qText.classList.add('question');
+            qText.innerHTML = `Question ${i+1}: ${q.question}`;
+            qDiv.appendChild(qText);
+
+            // options list
+            q.options.forEach((opt, idx) => {
+                const optDiv = document.createElement('div');
+                optDiv.classList.add('option');
+
+                // mark user’s pick
+                if (userSelections[i] === idx) {
+                optDiv.classList.add('selected');
+                }
+                // mark correctness
+                if (idx === q.correct) {
+                optDiv.classList.add('correct');
+                } else if (userSelections[i] === idx && idx !== q.correct) {
+                optDiv.classList.add('incorrect');
+                }
+
+                optDiv.textContent = opt;
+                qDiv.appendChild(optDiv);
+            });
+
+            // explanation
+            const expl = document.createElement('p');
+            expl.classList.add('explanation');
+            expl.innerHTML = `<em>Explanation:</em> ${q.explanation}`;
+            qDiv.appendChild(expl);
+
+            review.appendChild(qDiv);
+            });
         }
+    });
+
+
+    restartButton.addEventListener('click', initializeQuiz);
+    document.querySelectorAll(".dropdown-btn").forEach(button => {
+        button.addEventListener("click", () => {
+            const content = button.nextElementSibling;
+            content.style.display = content.style.display === "block" ? "none" : "block";
+        });
     });
 });
