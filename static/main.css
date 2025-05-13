@@ -688,6 +688,10 @@ main {
 }
 
 #completion-screen {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     text-align: center;
     margin-top: 20px;
 }
@@ -704,4 +708,5 @@ main {
 
 #completion-screen button {
     margin: 0 5px;
-}}
+    align-self: center;
+}

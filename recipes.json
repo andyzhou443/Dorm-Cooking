@@ -150,6 +150,25 @@
           "options": ["Chickpeas", "Feta cheese", "Olive oil", "Lemon juice"],
           "correct": 0,
           "explanation": "Chickpeas provide the main source of protein."
+        },
+        {
+          "id": 2,
+          "question": "Which ingredient adds creaminess to the salad?",
+          "options": ["Lettuce", "Red onion", "Feta cheese", "Cucumber"],
+          "correct": 2,
+          "explanation": "Feta cheese adds a creamy texture and tangy flavor."
+        },
+        {
+          "id": 3,
+          "question": "Why is lemon juice important in the dressing?",
+          "options": [
+            "It adds sweetness",
+            "It balances the saltiness with acidity",
+            "It thickens the dressing",
+            "It adds color"
+          ],
+          "correct": 1,
+          "explanation": "Lemon juice adds a bright acidity that balances the saltiness of the feta and other ingredients."
         }
       ]
     },
@@ -188,6 +207,20 @@
           "options": ["Cheddar", "Swiss", "American", "Mozzarella"],
           "correct": 2,
           "explanation": "American cheese is typically used for its meltability and mild flavor."
+        },
+        {
+          "id": 3,
+          "question": "What’s the best time to add the cheese to the egg or sausage?",
+          "options": ["Before cooking", "While whisking the eggs", "After cooking", "Right after turning off the heat"],
+          "correct": 3,
+          "explanation": "Adding cheese right after turning off the heat allows it to melt from residual heat without overcooking."
+        },
+        {
+          "id": 4,
+          "question": "Which of these bread options is most commonly used for this sandwich?",
+          "options": ["Bagel", "English muffin", "White bread", "Croissant"],
+          "correct": 1,
+          "explanation": "An English muffin is a classic choice that holds up well to the sandwich’s ingredients."
         }
       ]
     },
@@ -237,6 +270,20 @@
           "options": ["Cheese", "Tomatoes", "Peanut butter", "Butter"],
           "correct": 1,
           "explanation": "Tomatoes are commonly used as a topping for avocado toast."
+        },
+        {
+          "id": 3,
+          "question": "What type of bread is commonly used for avocado toast?",
+          "options": ["White bread", "Whole grain or sourdough", "Brioche", "Pita"],
+          "correct": 1,
+          "explanation": "Whole grain or sourdough bread is often chosen for its texture and flavor."
+        },
+        {
+          "id": 4,
+          "question": "Why is lemon juice often added to mashed avocado?",
+          "options": ["For color", "To sweeten it", "To prevent browning and add brightness", "To thicken the texture"],
+          "correct": 2,
+          "explanation": "Lemon juice helps slow down browning and adds a fresh flavor boost."
         }
       ]
     },
@@ -292,6 +339,20 @@
           "options": ["Garlic", "Tomatoes", "Cinnamon", "Chocolate"],
           "correct": 0,
           "explanation": "Garlic is an important flavoring agent in stir-fry recipes."
+        },
+        {
+          "id": 3,
+          "question": "Which oil is commonly used for high-heat stir-frying?",
+          "options": ["Olive oil", "Sesame oil", "Vegetable oil", "Butter"],
+          "correct": 2,
+          "explanation": "Vegetable oil is often used for its high smoke point, making it suitable for stir-frying."
+        },
+        {
+          "id": 4,
+          "question": "Why should vegetables be cut into similar sizes for stir-fry?",
+          "options": ["To look prettier", "For even cooking", "To make them easier to hold", "To save ingredients"],
+          "correct": 1,
+          "explanation": "Cutting vegetables into similar sizes ensures they cook evenly in a stir-fry."
         }
       ]
     },
@@ -341,6 +402,20 @@
           "options": ["Sour cream and salsa", "Chips", "Rice", "Salad"],
           "correct": 0,
           "explanation": "Quesadillas are often served with sour cream and salsa on the side."
+        },
+        {
+          "id": 3,
+          "question": "What type of tortilla is typically used for quesadillas?",
+          "options": ["Corn", "Wheat", "Flour", "Rice paper"],
+          "correct": 2,
+          "explanation": "Flour tortillas are commonly used for quesadillas due to their flexibility and size."
+        },
+        {
+          "id": 4,
+          "question": "How is a quesadilla usually cooked?",
+          "options": ["Boiled", "Grilled", "Pan-fried", "Baked"],
+          "correct": 2,
+          "explanation": "Quesadillas are typically pan-fried until the tortilla is crispy and the cheese melts."
         }
       ]
     }
