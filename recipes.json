@@ -133,14 +133,14 @@
       ],
 
       "videos": [
-        "https://www.onceuponachef.com/images/2014/02/rinsing-chickpeas.jpg",
-        "https://wholefully.com/wp-content/uploads/2021/02/diced-minced-chopped-onions.jpg",
-        "",
-        "",
+        "../static/videos/garbanzo.gif",
+        "../static/videos/cucumbers.gif",
+        "https://imalwayshungry.net/wp-content/uploads/2017/04/IMG_1347-1024x768.jpg",
+        "../static/videos/cucumberchickpeabowl.gif",
         "https://www.verywellfit.com/thmb/g5r43cIThbB7AqLiNla2GhQyp00=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/feta-crop-3049d406381744e68f6398f3102f868b.jpg",
-        "",
-        "",
-        "https://wp2.dinnertime.com/content/wp-content/uploads/2018/05/tossed_salad_3.jpg",
+        "../static/videos/seasonings.gif",
+        "../static/videos/drizzle.gif",
+        "../static/videos/tossing.gif",
         ""
       ],
       "quiz": [
